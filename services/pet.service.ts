@@ -1,15 +1,14 @@
-/**
- * Generated with ❤ 
- * at 
- */
-
 /* tslint:disable */
 /* eslint-disable */
-import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RequestBuilder, StrictHttpResponse } from '@leanix/shared/data-access';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { BaseService } from '../base-service';
+import { ApiConfiguration } from '../api-configuration';
+import { StrictHttpResponse } from '../strict-http-response';
+import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
+
 import { ApiResponse } from '../models/api-response';
 import { Pet } from '../models/pet';
 
@@ -20,12 +19,13 @@ import { Pet } from '../models/pet';
 @Injectable({
   providedIn: 'root',
 })
-export class PetService {
-  private readonly rootUrl = '/v3';
-
+export class PetService extends BaseService {
   constructor(
-    private http: HttpClient
-  ) {}
+    config: ApiConfiguration,
+    http: HttpClient
+  ) {
+    super(config, http);
+  }
 
   /**
    * Path part for operation updatePet
@@ -1304,4 +1304,3 @@ export class PetService {
   }
 
 }
-    
